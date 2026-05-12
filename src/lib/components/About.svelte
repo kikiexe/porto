@@ -10,6 +10,12 @@
       <div class="about-text">
         <h2>{@html `A developer building at the intersection of <em>web</em> and <em>blockchain</em>.`}</h2>
         <p class="muted">{profile.summary}</p>
+
+        <div class="spotify-status">
+          <a href="https://spotify-github-profile.kittinanx.com/api/view?uid=pqmdjhoiqiiapqgyiju3ns7x1&redirect=true" target="_blank" rel="noopener noreferrer">
+            <img src="https://spotify-github-profile.kittinanx.com/api/view?uid=pqmdjhoiqiiapqgyiju3ns7x1&cover_image=true&theme=novatorem&show_offline=true&background_color=121212&interchange=true&profanity=true&bar_color=53b14f&bar_color_cover=false" height="150" alt="Spotify Status" />
+          </a>
+        </div>
       </div>
 
       <aside class="about-sidebar">
