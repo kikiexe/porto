@@ -13,7 +13,10 @@
 
         <div class="spotify-status">
           <a href="https://spotify-github-profile.kittinanx.com/api/view?uid=pqmdjhoiqiiapqgyiju3ns7x1&redirect=true" target="_blank" rel="noopener noreferrer">
-            <img src="https://spotify-github-profile.kittinanx.com/api/view?uid=pqmdjhoiqiiapqgyiju3ns7x1&cover_image=true&theme=novatorem&show_offline=true&background_color=121212&interchange=true&profanity=true&bar_color=53b14f&bar_color_cover=false" height="150" alt="Spotify Status" />
+            <img
+              src="https://spotify-github-profile.kittinanx.com/api/view?uid=pqmdjhoiqiiapqgyiju3ns7x1&cover_image=true&theme=novatorem&show_offline=true&background_color=121212&interchange=true&profanity=true&bar_color=53b14f&bar_color_cover=false"
+              alt="Spotify Status"
+            />
           </a>
         </div>
       </div>
@@ -99,10 +102,36 @@
     font-size: 0.72rem;
   }
 
+  .spotify-status {
+    margin-top: var(--space-md);
+  }
+
+  .spotify-status a {
+    display: block;
+  }
+
+  .spotify-status img {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    filter: grayscale(0.2);
+    transition: var(--transition);
+  }
+
+  .spotify-status img:hover {
+    filter: grayscale(0);
+  }
+
   @media (max-width: 768px) {
     .about-layout {
       grid-template-columns: 1fr;
       gap: var(--space-lg);
+    }
+
+    .spotify-status img {
+      max-width: 100%;
     }
   }
 </style>

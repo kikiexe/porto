@@ -34,6 +34,7 @@
 <style>
   .hero {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     position: relative;
@@ -114,6 +115,7 @@
   .hero-scroll {
     position: absolute;
     bottom: 2rem;
+    bottom: calc(2rem + env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -149,6 +151,12 @@
     .hero-actions {
       flex-direction: column;
       align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-scroll {
+      display: none;
     }
   }
 </style>
