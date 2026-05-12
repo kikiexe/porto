@@ -47,6 +47,11 @@
     padding-left: 0.5rem;
   }
 
+  .project-row:hover .project-body h3 {
+    color: var(--color-highlight);
+    transition: color var(--transition);
+  }
+
   .project-meta {
     display: flex;
     flex-direction: column;
@@ -70,6 +75,7 @@
     font-size: 1.4rem;
     margin-bottom: 0.4rem;
     letter-spacing: -0.01em;
+    transition: color var(--transition);
   }
 
   .project-body p {
@@ -93,6 +99,14 @@
     padding: 4px 10px;
     border: 1px solid var(--color-rule);
     color: var(--color-text-muted);
+    transition: var(--transition);
+    cursor: default;
+  }
+
+  .tag:hover {
+    color: var(--color-highlight);
+    border-color: var(--color-highlight);
+    background: transparent;
   }
 
   @media (max-width: 768px) {

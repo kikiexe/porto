@@ -3,7 +3,7 @@ export const profile = {
   role: "Full Stack & Web3 Developer",
   email: "putraajril2@gmail.com",
   linkedin: "linkedin.com/in/ajrilfatah",
-  github: "github.com/ajrilfatah", // Assumed from context or typical patterns
+  github: "github.com/kikiexe",
   location: "Sleman, D.I. Yogyakarta",
   summary: "Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience in building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and eager to contribute to robust cloud security infrastructures.",
   education: {
@@ -15,9 +15,18 @@ export const profile = {
   },
   experience: [
     {
+      company: "Munk Studio",
+      role: "Full Stack Developer",
+      period: "August 2025 - Present",
+      description: [
+        "Full Stack Developer at Munk Studio, working on various web development projects for clients.",
+        "Collaborating with designers and project managers to deliver high-quality web applications."
+      ]
+    },
+    {
       company: "Sebaya Kopi",
       role: "Barista",
-      period: "March 2025 – August 2025",
+      period: "March 2025 - August 2025",
       description: [
         "Served coffee and non-coffee beverages according to quality standards.",
         "Provided customer service with a friendly and professional attitude."
@@ -26,7 +35,7 @@ export const profile = {
     {
       company: "Norde Coffee",
       role: "Kitchen Staff",
-      period: "February 2025 – June 2025",
+      period: "February 2025 - June 2025",
       description: [
         "Prepared food and beverages following quality and hygiene standards.",
         "Supported kitchen efficiency and collaborated effectively with the team."
@@ -35,7 +44,7 @@ export const profile = {
     {
       company: "Sebaya Kopi",
       role: "Kitchen Staff",
-      period: "June 2024 – December 2024",
+      period: "June 2024 - December 2024",
       description: [
         "Prepared food and beverages following quality and hygiene standards.",
         "Supported kitchen efficiency and collaborated effectively with the team."

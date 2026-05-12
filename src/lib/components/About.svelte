@@ -26,7 +26,7 @@
           <span class="mono muted">Experience</span>
           {#each profile.experience as job}
             <div class="exp-item">
-              <p class="exp-company">{job.role}<span class="muted"> — {job.company}</span></p>
+              <p class="exp-company">{job.role} <span class="muted">- {job.company}</span></p>
               <p class="mono muted">{job.period}</p>
             </div>
           {/each}

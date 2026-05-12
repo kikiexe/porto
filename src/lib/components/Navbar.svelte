@@ -13,6 +13,8 @@
     { name: 'Contact', href: '#contact' }
   ];
 
+  let activeSection = $state('');
+
   onMount(() => {
     theme.init();
 
@@ -25,10 +27,39 @@
     };
     window.addEventListener('scroll', handleScroll);
 
+    const handleOutsideClick = (e: MouseEvent) => {
+      const navbar = document.querySelector('.navbar');
+      if (navbar && !navbar.contains(e.target as Node)) {
+        isMobileMenuOpen = false;
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+
+    const sections = document.querySelectorAll('section[id]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            activeSection = entry.target.id;
+          }
+        }
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+    sections.forEach(s => observer.observe(s));
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleOutsideClick);
+      observer.disconnect();
       unsubscribe();
     };
+  });
+
+  $effect(() => {
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    }
   });
 
   function toggleMenu() {
@@ -49,7 +80,13 @@
     <div class="nav-right">
       <nav class="desktop-nav">
         {#each navLinks as link}
-          <a href={link.href} class="nav-link">{link.name}</a>
+          <a
+            href={link.href}
+            class="nav-link"
+            class:active={activeSection === link.href.replace('#', '')}
+          >
+            {link.name}
+          </a>
         {/each}
       </nav>
 
@@ -74,12 +111,14 @@
 
   {#if isMobileMenuOpen}
     <nav class="mobile-nav">
-      {#each navLinks as link}
-        <a href={link.href} class="mobile-link" onclick={closeMenu}>{link.name}</a>
-      {/each}
-      <button class="mobile-theme mono" onclick={() => theme.toggle()}>
-        {currentTheme === 'light' ? 'Dark Mode' : 'Light Mode'}
-      </button>
+      <div class="mobile-nav-content">
+        {#each navLinks as link}
+          <a href={link.href} class="mobile-link" onclick={closeMenu}>{link.name}</a>
+        {/each}
+        <button class="mobile-theme mono" onclick={() => theme.toggle()}>
+          {currentTheme === 'light' ? 'Dark Mode' : 'Light Mode'}
+        </button>
+      </div>
     </nav>
   {/if}
 </header>
@@ -137,6 +176,10 @@
     color: var(--color-text);
   }
 
+  .nav-link.active {
+    color: var(--color-text);
+  }
+
   /* Theme toggle */
   .theme-toggle {
     background: none;
@@ -185,7 +228,8 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 1001;
+    z-index: 10001;
+    position: relative;
   }
 
   .bar-wrap {
@@ -208,14 +252,23 @@
 
   .mobile-nav {
     position: fixed;
-    inset: 0;
-    background: var(--color-bg);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 10000;
+  }
+
+  .mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 3rem;
-    z-index: 999;
   }
 
   .mobile-link {

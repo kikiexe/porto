@@ -92,8 +92,9 @@
   .skill-list li {
     font-size: 0.95rem;
     color: var(--color-text);
-    transition: var(--transition);
     padding: 0.2rem 0;
+    padding-left: 0;
+    transition: color 0.25s ease, padding-left 0.25s ease;
   }
 
   .skill-list li:hover {
@@ -117,7 +118,7 @@
     .skills-grid {
       grid-template-columns: 1fr;
     }
-    .skill-group {
+    .skill-group, .skill-group:nth-child(n) {
       border-right: none;
     }
   }

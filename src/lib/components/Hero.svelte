@@ -62,7 +62,7 @@
   .hero-tagline p {
     font-size: clamp(1.3rem, 2.5vw, 1.8rem);
     font-style: italic;
-    color: var(--color-text-muted);
+    color: var(--color-highlight);
   }
 
   .hero-summary {
