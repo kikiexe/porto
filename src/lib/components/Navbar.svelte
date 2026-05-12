@@ -136,7 +136,7 @@
 
   .navbar.scrolled {
     background: var(--color-navbar-scroll);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(25px);
     border-bottom: 1px solid var(--color-rule-light);
     padding: 1rem 0;
   }

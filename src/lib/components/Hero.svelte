@@ -136,7 +136,7 @@
     top: -100%;
     width: 1px;
     height: 100%;
-    background: var(--color-text);
+    background: var(--color-highlight);
     animation: scrollDown 2s ease infinite;
   }
 

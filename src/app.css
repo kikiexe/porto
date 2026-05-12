@@ -11,7 +11,7 @@
   --color-rule-light: #e8e2da;
   --color-highlight: #c9452b;
   --color-selection: rgba(201, 69, 43, 0.15);
-  --color-navbar-scroll: rgba(245, 240, 235, 0.92);
+  --color-navbar-scroll: rgba(245, 240, 235, 0.4);
 
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-sans: 'DM Sans', system-ui, sans-serif;
@@ -38,7 +38,7 @@
   --color-rule-light: #252522;
   --color-highlight: #e05a3a;
   --color-selection: rgba(224, 90, 58, 0.2);
-  --color-navbar-scroll: rgba(17, 17, 16, 0.92);
+  --color-navbar-scroll: rgba(17, 17, 16, 0.1);
 }
 
 * {
