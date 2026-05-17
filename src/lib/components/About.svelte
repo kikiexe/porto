@@ -1,5 +1,65 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
+
+  onMount(() => {
+    const triggers: ScrollTrigger[] = [];
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '#about',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('#about .section-label',
+          { width: 0, opacity: 0 },
+          { width: 'auto', opacity: 1, duration: DURATION.slow, ease: EASE.smooth }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '#about',
+      start: 'top 65%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.about-text',
+          { x: -60, opacity: 0 },
+          { x: 0, opacity: 1, duration: DURATION.dramatic, ease: EASE.reveal }
+        );
+        gsap.fromTo('.about-sidebar',
+          { x: 60, opacity: 0 },
+          { x: 0, opacity: 1, duration: DURATION.dramatic, ease: EASE.reveal, delay: 0.2 }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '.about-sidebar',
+      start: 'top 70%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.exp-item',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: DURATION.normal, stagger: 0.12, ease: EASE.smooth }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '.spotify-status',
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.spotify-status',
+          { scale: 0.9, opacity: 0 },
+          { scale: 1, opacity: 1, duration: DURATION.slow, ease: EASE.bounce }
+        );
+      },
+    }));
+
+    return () => triggers.forEach(st => st.kill());
+  });
 </script>
 
 <section id="about" class="section">
@@ -133,5 +193,9 @@
     .spotify-status img {
       max-width: 100%;
     }
+  }
+
+  #about {
+    padding-top: var(--space-lg);
   }
 </style>

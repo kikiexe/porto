@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { onMount, tick } from 'svelte';
   import { projects } from '$lib/data/projects';
   import ProjectCard from './ProjectCard.svelte';
+  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
 
   let activeCategory = $state('all');
   const categories = ['all', 'web3', 'web', 'game', 'tool'];
@@ -11,9 +13,84 @@
       : projects.filter(p => p.category === activeCategory)
   );
 
-  function setCategory(cat: string) {
+  async function setCategory(cat: string) {
+    // Fade out current items
+    const rows = document.querySelectorAll('.project-row');
+    if (rows.length > 0) {
+      await gsap.to('.project-row', {
+        opacity: 0,
+        y: -10,
+        duration: 0.2,
+        stagger: 0.03,
+        ease: EASE.smooth,
+      });
+    }
+
     activeCategory = cat;
+    await tick(); // tunggu Svelte re-render
+
+    // Clear any residual GSAP inline styles on new elements, then animate in
+    const newRows = document.querySelectorAll('.project-row');
+    if (newRows.length > 0) {
+      gsap.set(newRows, { clearProps: 'all' });
+      gsap.fromTo(newRows,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: DURATION.fast,
+          stagger: 0.06,
+          ease: EASE.smooth,
+        }
+      );
+    }
   }
+
+  onMount(() => {
+    const triggers: ScrollTrigger[] = [];
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '#projects',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('#projects .section-label',
+          { width: 0, opacity: 0 },
+          { width: 'auto', opacity: 1, duration: DURATION.slow, ease: EASE.smooth }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '#projects',
+      start: 'top 70%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.projects-header',
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: DURATION.normal, ease: EASE.smooth }
+        );
+        gsap.fromTo('.filter-btn',
+          { y: 15, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.08, duration: DURATION.fast, ease: EASE.smooth }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '.projects-list',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.project-row',
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.1, duration: DURATION.normal, ease: EASE.smooth }
+        );
+      },
+    }));
+
+    return () => triggers.forEach(st => st.kill());
+  });
 </script>
 
 <section id="projects" class="section">

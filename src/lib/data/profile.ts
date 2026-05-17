@@ -10,7 +10,7 @@ export const profile = {
     school: "Universitas Amikom Yogyakarta",
     degree: "Bachelor of Informatics",
     gpa: "3.29/4.00",
-    period: "2022 – Present",
+    period: "2022 – 2026",
     focus: "Programming"
   },
   experience: [

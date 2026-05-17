@@ -1,26 +1,72 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
+
+  onMount(() => {
+    const tl = gsap.timeline({ defaults: { ease: EASE.reveal } });
+
+    // Set initial state — semua hidden
+    gsap.set('.hero-top, .hero-name, .hero-tagline, .hero-summary, .hero-actions', {
+      opacity: 0,
+      y: 40,
+    });
+
+    // Orchestrated reveal sequence
+    tl.to('.hero-top', {
+        opacity: 1, y: 0, duration: DURATION.normal
+      })
+      .to('.hero-name', {
+        opacity: 1, y: 0, duration: DURATION.dramatic,
+      }, '-=0.3')
+      .to('.hero-tagline', {
+        opacity: 1, y: 0, duration: DURATION.normal,
+      }, '-=0.6')
+      .to('.hero-summary', {
+        opacity: 1, y: 0, duration: DURATION.normal,
+      }, '-=0.4')
+      .to('.hero-actions', {
+        opacity: 1, y: 0, duration: DURATION.normal,
+      }, '-=0.3');
+
+    // Parallax effect pada scroll — hero content naik lebih cepat dari scroll
+    const heroST = gsap.to('.hero-inner', {
+      y: -100,
+      opacity: 0.3,
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1.5,
+      },
+    });
+
+    return () => {
+      tl.kill();
+      heroST.scrollTrigger?.kill();
+    };
+  });
 </script>
 
 <section class="hero">
   <div class="container hero-inner">
-    <div class="hero-top fade-up">
+    <div class="hero-top">
       <span class="mono muted">{profile.location}</span>
     </div>
 
-    <h1 class="hero-name fade-up" style="animation-delay: 0.1s">
+    <h1 class="hero-name">
       {profile.name}
     </h1>
 
-    <div class="hero-tagline fade-up" style="animation-delay: 0.2s">
+    <div class="hero-tagline">
       <p class="serif">{profile.role}</p>
     </div>
 
-    <p class="hero-summary muted fade-up" style="animation-delay: 0.3s">
+    <p class="hero-summary muted">
       {profile.summary}
     </p>
 
-    <div class="hero-actions fade-up" style="animation-delay: 0.4s">
+    <div class="hero-actions">
       <a href="#projects" class="btn-solid">Selected Work</a>
       <a href="/cv.pdf" class="btn-ghost" download>Resume ↓</a>
     </div>
@@ -154,9 +200,5 @@
     }
   }
 
-  @media (max-width: 480px) {
-    .hero-scroll {
-      display: none;
-    }
-  }
+
 </style>
