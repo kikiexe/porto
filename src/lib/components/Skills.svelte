@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
+
   const skillGroups = [
     {
       title: 'Blockchain & Web3',
@@ -25,6 +28,59 @@
       skills: ['Unity', 'C#', 'Aseprite', 'Video Editing']
     }
   ];
+
+  onMount(() => {
+    const triggers: ScrollTrigger[] = [];
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '#skills',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('#skills .section-label',
+          { width: 0, opacity: 0 },
+          { width: 'auto', opacity: 1, duration: DURATION.slow, ease: EASE.smooth }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '#skills',
+      start: 'top 70%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.skills-title',
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: DURATION.slow, ease: EASE.reveal }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '.skills-grid',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.skill-group',
+          { y: 50, opacity: 0, scale: 0.95 },
+          {
+            y: 0, opacity: 1, scale: 1,
+            stagger: { amount: 0.6, grid: [2, 3], from: 'start' },
+            duration: DURATION.normal, ease: EASE.smooth,
+          }
+        );
+
+        document.querySelectorAll('.skill-group').forEach((group) => {
+          gsap.fromTo(group.querySelectorAll('.skill-list li'),
+            { x: -15, opacity: 0 },
+            { x: 0, opacity: 1, stagger: 0.05, duration: DURATION.fast, ease: EASE.smooth, delay: 0.3 }
+          );
+        });
+      },
+    }));
+
+    return () => triggers.forEach(st => st.kill());
+  });
 </script>
 
 <section id="skills" class="section">

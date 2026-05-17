@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
 
   let name = $state('');
   let email = $state('');
@@ -35,6 +37,68 @@
       errorMsg = 'Network error. Please try again.';
     }
   }
+
+  onMount(() => {
+    const triggers: ScrollTrigger[] = [];
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '#contact',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('#contact .section-label',
+          { width: 0, opacity: 0 },
+          { width: 'auto', opacity: 1, duration: DURATION.slow, ease: EASE.smooth }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '#contact',
+      start: 'top 65%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.contact-left h2',
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: DURATION.dramatic, ease: EASE.reveal }
+        );
+        gsap.fromTo('.contact-left > p',
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: DURATION.normal, ease: EASE.smooth, delay: 0.3 }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '.contact-links',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.contact-row, .contact-links .rule',
+          { x: -30, opacity: 0 },
+          { x: 0, opacity: 1, stagger: 0.1, duration: DURATION.normal, ease: EASE.smooth }
+        );
+      },
+    }));
+
+    triggers.push(ScrollTrigger.create({
+      trigger: '.contact-form',
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.form-group',
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.15, duration: DURATION.normal, ease: EASE.smooth }
+        );
+        gsap.fromTo('.submit-btn',
+          { scale: 0.8, opacity: 0 },
+          { scale: 1, opacity: 1, duration: DURATION.normal, ease: EASE.bounce, delay: 0.4 }
+        );
+      },
+    }));
+
+    return () => triggers.forEach(st => st.kill());
+  });
 </script>
 
 <section id="contact" class="section">

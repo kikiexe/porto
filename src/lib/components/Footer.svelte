@@ -1,7 +1,25 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
 
   const currentYear = new Date().getFullYear();
+
+  onMount(() => {
+    const st = ScrollTrigger.create({
+      trigger: '.footer',
+      start: 'top 90%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo('.footer-inner',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: DURATION.normal, ease: EASE.smooth }
+        );
+      },
+    });
+
+    return () => st.kill();
+  });
 </script>
 
 <footer class="footer">

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { theme } from '$lib/stores/theme';
+  import { gsap, EASE, DURATION } from '$lib/utils/gsap';
 
   let isScrolled = $state(false);
   let isMobileMenuOpen = $state(false);
@@ -17,6 +18,19 @@
 
   onMount(() => {
     theme.init();
+
+    // Navbar slide-down entrance
+    gsap.fromTo('.navbar',
+      { y: -80, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: DURATION.slow,
+        ease: EASE.smooth,
+        delay: 0.2,
+        onComplete: () => gsap.set('.navbar', { clearProps: 'opacity,transform' }),
+      }
+    );
 
     const unsubscribe = theme.subscribe(v => {
       currentTheme = v;
