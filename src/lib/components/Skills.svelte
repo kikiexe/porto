@@ -1,12 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
-  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
+  import { getGsap, type Trigger, EASE, DURATION } from '$lib/utils/gsap';
 
   const skillGroups = profile.skills;
 
-  onMount(() => {
-    const triggers: ScrollTrigger[] = [];
+  onMount(async () => {
+    const { gsap, ScrollTrigger } = await getGsap();
+    const triggers: Trigger[] = [];
 
     triggers.push(ScrollTrigger.create({
       trigger: '#skills',

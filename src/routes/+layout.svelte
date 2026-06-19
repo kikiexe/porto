@@ -5,13 +5,15 @@
   import Navbar from '$lib/components/Navbar.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import favicon from '$lib/assets/favicon.svg';
-  import { gsap } from '$lib/utils/gsap';
+  import { getGsap } from '$lib/utils/gsap';
 
   let { children } = $props();
 
-  onMount(() => {
+  onMount(async () => {
     // Hanya jalankan di browser, bukan di server
     if (!browser) return;
+
+    const { gsap } = await getGsap();
 
     // Intercept anchor clicks untuk smooth scroll via GSAP
     const handleAnchorClick = (e: Event) => {

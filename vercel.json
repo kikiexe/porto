@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    { "source": "/favicon.ico", "destination": "/favicon.svg", "permanent": true },
+    { "source": "/favicon.png", "destination": "/favicon.svg", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(robots\\.txt|favicon\\.svg)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    }
+  ]
+}

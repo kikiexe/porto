@@ -1,9 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
-  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
+  import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
-  onMount(() => {
+  onMount(async () => {
+    const { gsap } = await getGsap();
     const tl = gsap.timeline({ defaults: { ease: EASE.reveal } });
 
     // Set initial state — semua hidden

@@ -2,7 +2,7 @@
   import { onMount, tick } from 'svelte';
   import { projects } from '$lib/data/projects';
   import ProjectCard from './ProjectCard.svelte';
-  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
+  import { getGsap, type Trigger, EASE, DURATION } from '$lib/utils/gsap';
 
   let activeCategory = $state('all');
   const categories = ['all', 'web3', 'web', 'mobile'];
@@ -14,6 +14,8 @@
   );
 
   async function setCategory(cat: string) {
+    const { gsap } = await getGsap();
+
     // Fade out current items
     const rows = document.querySelectorAll('.project-row');
     if (rows.length > 0) {
@@ -46,8 +48,9 @@
     }
   }
 
-  onMount(() => {
-    const triggers: ScrollTrigger[] = [];
+  onMount(async () => {
+    const { gsap, ScrollTrigger } = await getGsap();
+    const triggers: Trigger[] = [];
 
     triggers.push(ScrollTrigger.create({
       trigger: '#projects',
