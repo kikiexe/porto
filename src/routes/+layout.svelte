@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { browser } from '$app/environment';
   import '../app.css';
   import Navbar from '$lib/components/Navbar.svelte';
   import Footer from '$lib/components/Footer.svelte';
@@ -9,6 +10,9 @@
   let { children } = $props();
 
   onMount(() => {
+    // Hanya jalankan di browser, bukan di server
+    if (!browser) return;
+
     // Intercept anchor clicks untuk smooth scroll via GSAP
     const handleAnchorClick = (e: Event) => {
       const anchor = (e.currentTarget as HTMLAnchorElement);
