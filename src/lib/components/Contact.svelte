@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
-  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
+  import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
   let name = $state('');
   let email = $state('');
@@ -39,7 +39,10 @@
   }
 
   onMount(() => {
-    const triggers: ScrollTrigger[] = [];
+    const triggers: import('gsap/ScrollTrigger').ScrollTrigger[] = [];
+
+    (async () => {
+      const { gsap, ScrollTrigger } = await getGsap();
 
     triggers.push(ScrollTrigger.create({
       trigger: '#contact',
@@ -96,6 +99,7 @@
         );
       },
     }));
+    })();
 
     return () => triggers.forEach(st => st.kill());
   });

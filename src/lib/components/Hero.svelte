@@ -1,49 +1,54 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
-  import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
+  import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
   onMount(() => {
-    const tl = gsap.timeline({ defaults: { ease: EASE.reveal } });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let tl: any = null;
+    let heroST: any = null;
 
-    // Set initial state — semua hidden
-    gsap.set('.hero-top, .hero-name, .hero-tagline, .hero-summary, .hero-actions', {
-      opacity: 0,
-      y: 40,
-    });
+    (async () => {
+      const { gsap } = await getGsap();
 
-    // Orchestrated reveal sequence
-    tl.to('.hero-top', {
-        opacity: 1, y: 0, duration: DURATION.normal
-      })
-      .to('.hero-name', {
-        opacity: 1, y: 0, duration: DURATION.dramatic,
-      }, '-=0.3')
-      .to('.hero-tagline', {
-        opacity: 1, y: 0, duration: DURATION.normal,
-      }, '-=0.6')
-      .to('.hero-summary', {
-        opacity: 1, y: 0, duration: DURATION.normal,
-      }, '-=0.4')
-      .to('.hero-actions', {
-        opacity: 1, y: 0, duration: DURATION.normal,
-      }, '-=0.3');
+      tl = gsap.timeline({ defaults: { ease: EASE.reveal } });
 
-    // Parallax effect pada scroll — hero content naik lebih cepat dari scroll
-    const heroST = gsap.to('.hero-inner', {
-      y: -100,
-      opacity: 0.3,
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.5,
-      },
-    });
+      gsap.set('.hero-top, .hero-name, .hero-tagline, .hero-summary, .hero-actions', {
+        opacity: 0,
+        y: 40,
+      });
+
+      tl.to('.hero-top', {
+          opacity: 1, y: 0, duration: DURATION.normal
+        })
+        .to('.hero-name', {
+          opacity: 1, y: 0, duration: DURATION.dramatic,
+        }, '-=0.3')
+        .to('.hero-tagline', {
+          opacity: 1, y: 0, duration: DURATION.normal,
+        }, '-=0.6')
+        .to('.hero-summary', {
+          opacity: 1, y: 0, duration: DURATION.normal,
+        }, '-=0.4')
+        .to('.hero-actions', {
+          opacity: 1, y: 0, duration: DURATION.normal,
+        }, '-=0.3');
+
+      heroST = gsap.to('.hero-inner', {
+        y: -100,
+        opacity: 0.3,
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
+      });
+    })();
 
     return () => {
-      tl.kill();
-      heroST.scrollTrigger?.kill();
+      tl?.kill();
+      heroST?.scrollTrigger?.kill();
     };
   });
 </script>
