@@ -1,17 +1,50 @@
-export const profile = {
+export interface SkillGroup {
+  title: string;
+  skills: string[];
+}
+
+export interface Education {
+  school: string;
+  degree: string;
+  gpa: string;
+  period: string;
+  focus: string;
+}
+
+export interface Experience {
+  company: string;
+  role: string;
+  period: string;
+  description: string[];
+}
+
+export interface Profile {
+  name: string;
+  role: string;
+  email: string;
+  linkedin: string;
+  github: string;
+  location: string;
+  summary: string;
+  education: Education;
+  experience: Experience[];
+  skills: SkillGroup[];
+}
+
+export const profile: Profile = {
   name: "Putra Ajril Fatah",
   role: "Full Stack & Web3 Developer",
   email: "putraajril2@gmail.com",
   linkedin: "linkedin.com/in/ajrilfatah",
   github: "github.com/kikiexe",
   location: "Sleman, D.I. Yogyakarta",
-  summary: "Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience in building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and eager to contribute to robust cloud security infrastructures.",
+  summary: "Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and contributing to robust, scalable infrastructures.",
   education: {
     school: "Universitas Amikom Yogyakarta",
     degree: "Bachelor of Informatics",
-    gpa: "3.29/4.00",
-    period: "2022 – 2026",
-    focus: "Programming"
+    gpa: "3.32/4.00",
+    period: "2022-2026",
+    focus: "Programming/Data Science"
   },
   experience: [
     {
@@ -19,58 +52,37 @@ export const profile = {
       role: "Full Stack Developer",
       period: "August 2025 - Present",
       description: [
-        "Full Stack Developer at Munk Studio, working on various web development projects for clients.",
-        "Collaborating with designers and project managers to deliver high-quality web applications."
-      ]
-    },
-    {
-      company: "Sebaya Kopi",
-      role: "Barista",
-      period: "March 2025 - August 2025",
-      description: [
-        "Served coffee and non-coffee beverages according to quality standards.",
-        "Provided customer service with a friendly and professional attitude."
-      ]
-    },
-    {
-      company: "Norde Coffee",
-      role: "Kitchen Staff",
-      period: "February 2025 - June 2025",
-      description: [
-        "Prepared food and beverages following quality and hygiene standards.",
-        "Supported kitchen efficiency and collaborated effectively with the team."
-      ]
-    },
-    {
-      company: "Sebaya Kopi",
-      role: "Kitchen Staff",
-      period: "June 2024 - December 2024",
-      description: [
-        "Prepared food and beverages following quality and hygiene standards.",
-        "Supported kitchen efficiency and collaborated effectively with the team."
+        "Lead client communication and translate business requirements into technical specifications.",
+        "Architect system design and select appropriate tech stacks for each project.",
+        "Plan and manage development sprints to ensure timely delivery.",
+        "Build and maintain full-stack web and Web3 applications across frontend and backend layers."
       ]
     }
   ],
-  academicExperience: [
+  skills: [
     {
-      topic: "Web Programming",
-      period: "Sep 2022 – Present",
-      description: "Developed interactive web applications using HTML, CSS, JavaScript, Framework"
+      title: "Languages & Frameworks",
+      skills: ["Solidity", "Move", "Node.js", "Python", "Laravel", "Foundry"]
     },
     {
-      topic: "Big Data & Predictive Analytics",
-      period: "March 2023 – Present",
-      description: "Built predictive models using machine learning algorithms such as XGBoost to analyze datasets."
+      title: "Frontend",
+      skills: ["React", "Inertia.js", "Next.js", "HTML", "CSS", "JavaScript"]
     },
     {
-      topic: "Advanced Programming, Database Design",
-      period: "Sep 2022 – Present",
-      description: "Developed backend services to support CRUD operations in web applications using MySQL, PostgreSQL, MongoDB."
+      title: "Blockchain & Web3",
+      skills: ["Smart Contracts", "ZK Proofs", "IPFS", "DeFi", "NFT", "Wallet Integration"]
     },
     {
-      topic: "Game Programming",
-      period: "Sep 2022 – Present",
-      description: "Developed 2D games using Unity and C#. Focused on game logic, UI integration, and asset development."
+      title: "Database",
+      skills: ["PostgreSQL", "MySQL", "Supabase"]
+    },
+    {
+      title: "Tools",
+      skills: ["Git", "Postman", "Figma", "Visual Studio", "Docker"]
+    },
+    {
+      title: "Soft Skills",
+      skills: ["Adaptability", "Teamwork", "Problem-Solving", "Communication", "Crypto Market Analysis"]
     }
   ]
 };

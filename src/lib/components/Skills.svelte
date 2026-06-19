@@ -1,33 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { profile } from '$lib/data/profile';
   import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
 
-  const skillGroups = [
-    {
-      title: 'Blockchain & Web3',
-      skills: ['Solidity', 'Foundry', 'Ethers.js', 'Rust', 'Move', 'ZK-proofs']
-    },
-    {
-      title: 'Backend',
-      skills: ['Node.js', 'Laravel', 'Python', 'Go', 'FastAPI', 'Express']
-    },
-    {
-      title: 'Frontend',
-      skills: ['React', 'Svelte', 'Next.js', 'Inertia.js', 'TypeScript', 'Tailwind CSS']
-    },
-    {
-      title: 'Database',
-      skills: ['MySQL', 'PostgreSQL', 'MongoDB', 'Supabase', 'Firebase']
-    },
-    {
-      title: 'Tools',
-      skills: ['Git', 'Docker', 'Postman', 'Figma', 'VS Code']
-    },
-    {
-      title: 'Other',
-      skills: ['Unity', 'C#', 'Aseprite', 'Video Editing']
-    }
-  ];
+  const skillGroups = profile.skills;
 
   onMount(() => {
     const triggers: ScrollTrigger[] = [];

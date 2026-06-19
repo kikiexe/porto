@@ -110,8 +110,23 @@
         aria-label="Toggle theme"
         title={currentTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
       >
-        <div class="toggle-track" class:dark={currentTheme === 'dark'}>
-          <div class="toggle-thumb"></div>
+        <div class="icon-wrapper" class:dark={currentTheme === 'dark'}>
+          <!-- Sun Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
         </div>
       </button>
 
@@ -142,17 +157,30 @@
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    margin: 0 auto;
     width: 100%;
     z-index: 1000;
-    transition: var(--transition);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-rule-light);
+    background: transparent;
   }
 
   .navbar.scrolled {
+    top: 1rem;
+    width: calc(100% - 2rem);
+    max-width: 900px;
     background: var(--color-navbar-scroll);
     backdrop-filter: blur(25px);
-    border-bottom: 1px solid var(--color-rule-light);
-    padding: 1rem 0;
+    border: 1px solid var(--color-rule-light);
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    padding: 0.8rem 1.5rem;
+  }
+
+  .navbar.scrolled .container {
+    padding: 0;
   }
 
   .nav-inner {
@@ -199,40 +227,56 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
-  }
-
-  .toggle-track {
-    width: 36px;
-    height: 18px;
-    border-radius: 9px;
-    border: 1px solid var(--color-rule);
-    background: var(--color-bg-alt);
-    position: relative;
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-
-  .toggle-track.dark {
-    background: var(--color-text-muted);
-    border-color: var(--color-text-muted);
-  }
-
-  .toggle-thumb {
-    width: 12px;
-    height: 12px;
+    justify-content: center;
+    color: var(--color-text);
+    transition: color 0.3s ease, background-color 0.3s ease;
     border-radius: 50%;
-    background: var(--color-text);
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    transition: transform 0.3s ease, background 0.3s ease;
   }
 
-  .toggle-track.dark .toggle-thumb {
-    transform: translateX(18px);
-    background: var(--color-bg);
+  .theme-toggle:hover {
+    color: var(--color-highlight);
+    background: var(--color-bg-alt);
+  }
+
+  .icon-wrapper {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sun-icon, .moon-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  }
+
+  .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .moon-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+  }
+
+  .icon-wrapper.dark .sun-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+  }
+
+  .icon-wrapper.dark .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
   }
 
   /* Mobile */
