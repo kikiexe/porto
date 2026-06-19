@@ -6,6 +6,7 @@
   const categoryLabel: Record<string, string> = {
     web3: 'Web3 / Blockchain',
     web: 'Web Application',
+    mobile: 'Mobile Application',
     game: 'Game Dev',
     tool: 'Developer Tool'
   };

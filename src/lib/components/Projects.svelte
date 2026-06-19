@@ -5,7 +5,7 @@
   import { gsap, ScrollTrigger, EASE, DURATION } from '$lib/utils/gsap';
 
   let activeCategory = $state('all');
-  const categories = ['all', 'web3', 'web', 'game', 'tool'];
+  const categories = ['all', 'web3', 'web', 'mobile'];
 
   const filteredProjects = $derived(
     activeCategory === 'all'
