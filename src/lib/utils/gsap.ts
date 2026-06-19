@@ -1,6 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
 // Register plugins sekali saja
 if (typeof window !== 'undefined') {
