@@ -48,7 +48,7 @@ export const projects: Project[] = [
     description: "Engineered an offline-first mobile application with a strict 3-tier architecture to monitor Type 2 Diabetes risk at the community level. Implemented robust local data synchronization using the Outbox Pattern and Isar NoSQL for reliable operation in low-connectivity environments. Designed a secure backend API with Python, integrating AES-256-GCM encryption and Role-Based Access Control to ensure medical data confidentiality and regulatory compliance.",
     tags: ["Flutter", "FastAPI", "PostgreSQL", "Drift", "Docker"],
     category: "mobile",
-    status: "completed"
+    status: "in-progress"
   },
   {
     title: "Billet",

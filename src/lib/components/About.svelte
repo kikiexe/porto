@@ -82,11 +82,14 @@
       </div>
 
       <aside class="about-sidebar">
-        <div class="sidebar-block">
-          <span class="mono muted">Education</span>
-          <p class="school">{profile.education.school}</p>
-          <p class="muted">{profile.education.degree}</p>
-          <p class="mono" style="margin-top: 0.25rem">{profile.education.gpa} · {profile.education.period}</p>
+        <div class="sidebar-block education-block">
+          <div class="education-content">
+            <span class="mono muted">Education</span>
+            <p class="school">{profile.education.school}</p>
+            <p class="muted">{profile.education.degree}</p>
+            <p class="mono" style="margin-top: 0.25rem">{profile.education.gpa} · {profile.education.period}</p>
+          </div>
+          <img src="/images/Amikom.svg" alt="Amikom" class="education-logo" />
         </div>
 
         <hr class="rule" />
@@ -97,6 +100,11 @@
             <div class="exp-item">
               <p class="exp-company">{job.role} <span class="muted">- {job.company}</span></p>
               <p class="mono muted">{job.period}</p>
+              <ul class="exp-description">
+                {#each job.description as point}
+                  <li>{point}</li>
+                {/each}
+              </ul>
             </div>
           {/each}
         </div>
@@ -135,6 +143,32 @@
     padding: var(--space-sm) 0;
   }
 
+  .education-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .education-content {
+    flex: 1;
+  }
+
+  .education-logo {
+    width: 140px;
+    height: auto;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: var(--space-md);
+  }
+
+  .education-block:hover .education-logo {
+    opacity: 0.1;
+    transform: translateX(0);
+  }
+
   .sidebar-block > .mono:first-child {
     display: block;
     margin-bottom: var(--space-sm);
@@ -160,6 +194,19 @@
 
   .exp-item .mono {
     font-size: 0.72rem;
+  }
+
+  .exp-description {
+    margin-top: 0.4rem;
+    padding-left: 1rem;
+    list-style: disc;
+  }
+
+  .exp-description li {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 0.2rem;
   }
 
   .spotify-status {
