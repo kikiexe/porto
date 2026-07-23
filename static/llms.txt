@@ -1,0 +1,67 @@
+# Putra Ajril Fatah - Full Stack & Web3 Developer
+
+Personal website and portfolio of Putra Ajril Fatah, a developer specializing in decentralized architecture and secure systems.
+
+## Contact Information
+
+- Website: https://ajrilfatah.vercel.app
+- Email: putraajril2@gmail.com
+- GitHub: https://github.com/kikiexe
+- LinkedIn: https://linkedin.com/in/ajrilfatah
+- Location: Sleman, D.I. Yogyakarta, Indonesia
+
+## Summary
+
+Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and contributing to robust, scalable infrastructures.
+
+## Education
+
+- University: Universitas Amikom Yogyakarta (2022 - 2026)
+- Degree: Bachelor of Informatics
+- GPA: 3.32 / 4.00
+- Focus: Programming and Data Science
+
+## Technical Stack
+
+- Languages and Frameworks: Solidity, Move, Node.js, Python, Laravel, Foundry, SvelteKit, React, Next.js, Inertia.js, HTML, CSS, JavaScript, Flutter
+- Blockchain and Web3: Smart Contracts, ZK Proofs, IPFS, DeFi, NFT, Wallet Integration
+- Databases: PostgreSQL, MySQL, Supabase, Drift, Isar NoSQL
+- Tools: Git, Postman, Figma, Visual Studio, Docker, Ponder
+
+## Experience
+
+### Full Stack Developer - Munk Studio (August 2025 - Present)
+- Lead client communication and translate business requirements into technical specifications.
+- Architect system design and select appropriate tech stacks for each project.
+- Plan and manage development sprints to ensure timely delivery.
+- Build and maintain full-stack web and Web3 applications across frontend and backend layers.
+
+## Selected Projects
+
+### Veilfi (Completed)
+Decentralized yield aggregation platform built with smart contracts and zero-knowledge circuits. Users earn yield across multiple DeFi strategies while preserving privacy through ZK proofs. Ensures secure fund management, verifiable compliance, and trustless operation without centralized intermediaries.
+- Technologies: Solidity, ZK Circuits, Web3
+
+### Velipe (Completed)
+Decentralized document verification platform built with smart contracts and a Web3 frontend. Enables secure issuance and validation of digital documents on-chain using IPFS for immutable storage. Eliminates reliance on centralized authorities through blockchain-enforced authenticity.
+- Technologies: Solidity, IPFS, Web3
+
+### SathaFly (Completed)
+Web-based dApp for purchasing flight tickets as NFTs using IDRX tokens. Smart contract automatically executes refunds for flight delays or cancellations without manual claims.
+- Technologies: Solidity, IDRX, NFT, Web3, ERC-20
+
+### Gasan (In Progress)
+AI-driven fraud prevention platform for community savings (arisan). Mitigates default risks through predictive analytics and automated escrow disbursements. Ensures transparent fund management without reliance on manual verification.
+- Technologies: Python, FastAPI, Escrow
+
+### June Label (Completed)
+Modern e-commerce website with premium product gallery managed via Filament Admin Panel. Integrated cart and checkout system for seamless end-to-end shopping experience.
+- Technologies: Laravel, Inertia.js, React, Filament
+
+### SiPandu-DM (In Progress)
+Engineered an offline-first mobile application with a strict 3-tier architecture to monitor Type 2 Diabetes risk at the community level. Implemented robust local data synchronization using the Outbox Pattern and Isar NoSQL for reliable operation in low-connectivity environments. Designed a secure backend API with Python, integrating AES-256-GCM encryption and Role-Based Access Control to ensure medical data confidentiality and regulatory compliance.
+- Technologies: Flutter, FastAPI, PostgreSQL, Drift, Docker
+
+### Billet (Completed)
+Built an on-chain smart ticketing protocol on Base Layer 2 utilizing ERC-1155 to mitigate scalping through trustless escrow and strict secondary market restrictions. Architected on-chain price ceiling enforcement and conditional royalty routing (ERC-2981) to automatically restrict peer-to-peer transfers and manage event organizer revenues. Designed a decoupled Web3 architecture integrating smart contracts, a Ponder-based indexer for efficient GraphQL event querying, and a Next.js/Wagmi frontend.
+- Technologies: Solidity, Next.js, Foundry, Base L2, Ponder

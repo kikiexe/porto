@@ -5,8 +5,35 @@
   import Footer from '$lib/components/Footer.svelte';
   import favicon from '$lib/assets/favicon.svg';
   import { getGsap } from '$lib/utils/gsap';
+  import { profile } from '$lib/data/profile';
 
   let { children } = $props();
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": profile.name,
+    "jobTitle": profile.role,
+    "email": profile.email,
+    "url": profile.url,
+    "image": `${profile.url}/images/profile.png`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Sleman",
+      "addressRegion": "D.I. Yogyakarta",
+      "addressCountry": "ID"
+    },
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": profile.education.school
+    },
+    "sameAs": [
+      `https://${profile.linkedin}`,
+      `https://${profile.github}`
+    ],
+    "knowsAbout": profile.skills.flatMap(group => group.skills),
+    "description": profile.summary
+  };
 
   onMount(() => {
     const handleAnchorClick = async (e: Event) => {
@@ -36,7 +63,26 @@
 
 <svelte:head>
   <link rel="icon" href={favicon} />
-  <title>Putra Ajril Fatah | Full Stack & Web3 Developer</title>
+  <title>{profile.name} | {profile.role}</title>
+  <meta name="description" content={profile.summary} />
+  <meta name="keywords" content="Putra Ajril Fatah, Full Stack Developer, Web3 Developer, Solidity, Move, Smart Contracts, ZK Proofs, SvelteKit, Yogyakarta, Indonesia" />
+  <meta name="author" content={profile.name} />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={profile.url} />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content={`${profile.name} | ${profile.role}`} />
+  <meta property="og:description" content={profile.summary} />
+  <meta property="og:url" content={profile.url} />
+  <meta property="og:image" content={`${profile.url}/images/profile.png`} />
+  <meta property="og:site_name" content={`${profile.name} Portfolio`} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${profile.name} | ${profile.role}`} />
+  <meta name="twitter:description" content={profile.summary} />
+  <meta name="twitter:image" content={`${profile.url}/images/profile.png`} />
+
+  {@html `<script type="application/ld+json">${JSON.stringify(schema)}<\/script>`}
 </svelte:head>
 
 <Navbar />

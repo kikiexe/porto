@@ -24,6 +24,7 @@ export interface Profile {
   email: string;
   linkedin: string;
   github: string;
+  url: string;
   location: string;
   summary: string;
   education: Education;
@@ -37,6 +38,7 @@ export const profile: Profile = {
   email: "putraajril2@gmail.com",
   linkedin: "linkedin.com/in/ajrilfatah",
   github: "github.com/kikiexe",
+  url: "https://ajrilfatah.vercel.app",
   location: "Sleman, D.I. Yogyakarta",
   summary: "Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and contributing to robust, scalable infrastructures.",
   education: {
