@@ -123,6 +123,14 @@
             <span class="contact-value">{profile.email}</span>
             <span class="arrow">→</span>
           </a>
+          {#if profile.whatsapp}
+            <hr class="rule" />
+            <a href="https://wa.me/{profile.whatsapp}?text={encodeURIComponent(profile.whatsappMessage || '')}" target="_blank" rel="noopener noreferrer" class="contact-row">
+              <span class="mono muted">WhatsApp</span>
+              <span class="contact-value">{profile.whatsappDisplay || profile.whatsapp}</span>
+              <span class="arrow">→</span>
+            </a>
+          {/if}
           <hr class="rule" />
           <a href="https://{profile.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-row">
             <span class="mono muted">LinkedIn</span>

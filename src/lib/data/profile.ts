@@ -24,6 +24,9 @@ export interface Profile {
   email: string;
   linkedin: string;
   github: string;
+  whatsapp?: string;
+  whatsappMessage?: string;
+  whatsappDisplay?: string;
   url: string;
   location: string;
   summary: string;
@@ -38,6 +41,9 @@ export const profile: Profile = {
   email: "putraajril2@gmail.com",
   linkedin: "linkedin.com/in/ajrilfatah",
   github: "github.com/kikiexe",
+  whatsapp: "6281215536136",
+  whatsappMessage: "Halo Putra! Salam kenal ya. Aku tertarik buat kolaborasi atau kerjasama bareng kamu nih.",
+  whatsappDisplay: "0812-1553-6136",
   url: "https://ajrilfatah.vercel.app",
   location: "Sleman, D.I. Yogyakarta",
   summary: "Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and contributing to robust, scalable infrastructures.",
