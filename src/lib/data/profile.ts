@@ -1,11 +1,11 @@
 export interface SkillGroup {
-  title: string;
+  title: Record<'en' | 'id', string>;
   skills: string[];
 }
 
 export interface Education {
   school: string;
-  degree: string;
+  degree: Record<'en' | 'id', string>;
   gpa: string;
   period: string;
   focus: string;
@@ -13,23 +13,23 @@ export interface Education {
 
 export interface Experience {
   company: string;
-  role: string;
+  role: Record<'en' | 'id', string>;
   period: string;
-  description: string[];
+  description: Record<'en' | 'id', string[]>;
 }
 
 export interface Profile {
   name: string;
-  role: string;
+  role: Record<'en' | 'id', string>;
   email: string;
   linkedin: string;
   github: string;
   whatsapp?: string;
-  whatsappMessage?: string;
+  whatsappMessage?: Record<'en' | 'id', string>;
   whatsappDisplay?: string;
   url: string;
   location: string;
-  summary: string;
+  summary: Record<'en' | 'id', string>;
   education: Education;
   experience: Experience[];
   skills: SkillGroup[];
@@ -37,19 +37,31 @@ export interface Profile {
 
 export const profile: Profile = {
   name: "Putra Ajril Fatah",
-  role: "Full Stack & Web3 Developer",
+  role: {
+    en: "Full Stack & Web3 Developer",
+    id: "Pengembang Full Stack & Web3"
+  },
   email: "putraajril2@gmail.com",
   linkedin: "linkedin.com/in/ajrilfatah",
   github: "github.com/kikiexe",
   whatsapp: "6281215536136",
-  whatsappMessage: "Halo Putra! Salam kenal ya. Aku tertarik buat kolaborasi atau kerjasama bareng kamu nih.",
+  whatsappMessage: {
+    en: "Hello Putra! Pleased to meet you. I'm interested in collaborating or working together with you.",
+    id: "Halo Putra! Salam kenal ya. Aku tertarik buat kolaborasi atau kerjasama bareng kamu nih."
+  },
   whatsappDisplay: "0812-1553-6136",
   url: "https://ajrilfatah.vercel.app",
   location: "Sleman, D.I. Yogyakarta",
-  summary: "Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and contributing to robust, scalable infrastructures.",
+  summary: {
+    en: "Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and contributing to robust, scalable infrastructures.",
+    id: "Pengembang Full Stack & Web3 yang berfokus pada arsitektur terdesentralisasi dan sistem yang aman. Memiliki pengalaman terbukti dalam membangun smart contract, integrasi ZK-proof, dan sistem escrow otomatis. Sangat bersemangat dalam memecahkan tantangan integritas data yang kompleks dan berkontribusi pada infrastruktur yang kuat dan terukur."
+  },
   education: {
     school: "Universitas Amikom Yogyakarta",
-    degree: "Bachelor of Informatics",
+    degree: {
+      en: "Bachelor of Informatics",
+      id: "Sarjana Informatika"
+    },
     gpa: "3.32/4.00",
     period: "2022-2026",
     focus: "Programming/Data Science"
@@ -57,39 +69,68 @@ export const profile: Profile = {
   experience: [
     {
       company: "Munk Studio",
-      role: "Full Stack Developer",
+      role: {
+        en: "Full Stack Developer",
+        id: "Pengembang Full Stack"
+      },
       period: "August 2025 - Present",
-      description: [
-        "Lead client communication and translate business requirements into technical specifications.",
-        "Architect system design and select appropriate tech stacks for each project.",
-        "Plan and manage development sprints to ensure timely delivery.",
-        "Build and maintain full-stack web and Web3 applications across frontend and backend layers."
-      ]
+      description: {
+        en: [
+          "Lead client communication and translate business requirements into technical specifications.",
+          "Architect system design and select appropriate tech stacks for each project.",
+          "Plan and manage development sprints to ensure timely delivery.",
+          "Build and maintain full-stack web and Web3 applications across frontend and backend layers."
+        ],
+        id: [
+          "Memimpin komunikasi dengan klien dan menerjemahkan kebutuhan bisnis menjadi spesifikasi teknis.",
+          "Merancang arsitektur sistem dan memilih teknologi yang tepat untuk setiap proyek.",
+          "Merencanakan dan mengelola sprint pengembangan untuk memastikan pengiriman tepat waktu.",
+          "Membangun dan memelihara aplikasi web full-stack dan Web3 di seluruh lapisan frontend dan backend."
+        ]
+      }
     }
   ],
   skills: [
     {
-      title: "Languages & Frameworks",
+      title: {
+        en: "Languages & Frameworks",
+        id: "Bahasa Pemrograman & Framework"
+      },
       skills: ["Solidity", "Move", "Node.js", "Python", "Laravel", "Foundry"]
     },
     {
-      title: "Frontend",
+      title: {
+        en: "Frontend",
+        id: "Frontend"
+      },
       skills: ["React", "Inertia.js", "Next.js", "HTML", "CSS", "JavaScript"]
     },
     {
-      title: "Blockchain & Web3",
+      title: {
+        en: "Blockchain & Web3",
+        id: "Blockchain & Web3"
+      },
       skills: ["Smart Contracts", "ZK Proofs", "IPFS", "DeFi", "NFT", "Wallet Integration"]
     },
     {
-      title: "Database",
+      title: {
+        en: "Database",
+        id: "Basis Data"
+      },
       skills: ["PostgreSQL", "MySQL", "Supabase"]
     },
     {
-      title: "Tools",
+      title: {
+        en: "Tools",
+        id: "Peralatan"
+      },
       skills: ["Git", "Postman", "Figma", "Visual Studio", "Docker"]
     },
     {
-      title: "Soft Skills",
+      title: {
+        en: "Soft Skills",
+        id: "Keahlian Interpersonal"
+      },
       skills: ["Adaptability", "Teamwork", "Problem-Solving", "Communication", "Crypto Market Analysis"]
     }
   ]

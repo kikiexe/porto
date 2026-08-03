@@ -2,10 +2,18 @@
   import { onMount, tick } from 'svelte';
   import { projects } from '$lib/data/projects';
   import ProjectCard from './ProjectCard.svelte';
+  import { language, type Language } from '$lib/stores/language';
+  import { translations } from '$lib/data/translations';
   import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
   let activeCategory = $state('all');
-  const categories = ['all', 'web3', 'web', 'mobile'];
+  const categories = ['all', 'web3', 'web', 'mobile', 'tools'];
+  let currentLang = $state<Language>('en');
+
+  const categoryNames: Record<'en' | 'id', Record<string, string>> = {
+    en: { all: 'all', web3: 'web3', web: 'web', mobile: 'mobile', tools: 'tools' },
+    id: { all: 'semua', web3: 'web3', web: 'web', mobile: 'mobile', tools: 'peralatan' }
+  };
 
   const filteredProjects = $derived(
     activeCategory === 'all'
@@ -47,6 +55,10 @@
   }
 
   onMount(() => {
+    const unsubscribeLang = language.subscribe(v => {
+      currentLang = v;
+    });
+
     const triggers: import('gsap/ScrollTrigger').ScrollTrigger[] = [];
 
     (async () => {
@@ -93,16 +105,19 @@
     }));
     })();
 
-    return () => triggers.forEach(st => st.kill());
+    return () => {
+      triggers.forEach(st => st.kill());
+      unsubscribeLang();
+    };
   });
 </script>
 
 <section id="projects" class="section">
   <div class="container">
-    <span class="section-label">02 — Selected Work</span>
+    <span class="section-label">{translations[currentLang].projectsSub}</span>
 
     <div class="projects-header">
-      <h2>Projects</h2>
+      <h2>{translations[currentLang].projectsTitle}</h2>
       <div class="filter-bar">
         {#each categories as category}
           <button
@@ -110,7 +125,7 @@
             class:active={activeCategory === category}
             onclick={() => setCategory(category)}
           >
-            {category}
+            {categoryNames[currentLang][category]}
           </button>
         {/each}
       </div>

@@ -1,11 +1,17 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { language, type Language } from '$lib/stores/language';
   import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
   const currentYear = new Date().getFullYear();
+  let currentLang = $state<Language>('en');
 
   onMount(() => {
+    const unsubscribeLang = language.subscribe(v => {
+      currentLang = v;
+    });
+
     let st: import('gsap/ScrollTrigger').ScrollTrigger | null = null;
 
     (async () => {
@@ -24,7 +30,10 @@
       });
     })();
 
-    return () => st?.kill();
+    return () => {
+      st?.kill();
+      unsubscribeLang();
+    };
   });
 </script>
 
@@ -32,12 +41,12 @@
   <div class="container footer-inner">
     <div class="footer-left">
       <p class="serif footer-name">{profile.name}</p>
-      <p class="mono muted">{profile.role}</p>
+      <p class="mono muted">{profile.role[currentLang]}</p>
     </div>
 
     <div class="footer-right mono muted">
       <p>© {currentYear}</p>
-      <p>Built with SvelteKit</p>
+      <p>{currentLang === 'id' ? 'Dibangun dengan SvelteKit' : 'Built with SvelteKit'}</p>
     </div>
   </div>
 </footer>

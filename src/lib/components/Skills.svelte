@@ -1,11 +1,18 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { language, type Language } from '$lib/stores/language';
+  import { translations } from '$lib/data/translations';
   import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
   const skillGroups = profile.skills;
+  let currentLang = $state<Language>('en');
 
   onMount(() => {
+    const unsubscribeLang = language.subscribe(v => {
+      currentLang = v;
+    });
+
     const triggers: import('gsap/ScrollTrigger').ScrollTrigger[] = [];
 
     (async () => {
@@ -59,20 +66,23 @@
     }));
     })();
 
-    return () => triggers.forEach(st => st.kill());
+    return () => {
+      triggers.forEach(st => st.kill());
+      unsubscribeLang();
+    };
   });
 </script>
 
 <section id="skills" class="section">
   <div class="container">
-    <span class="section-label">03 — Stack</span>
+    <span class="section-label">{translations[currentLang].skillsSub}</span>
 
-    <h2 class="skills-title">Technologies I work with</h2>
+    <h2 class="skills-title">{currentLang === 'id' ? 'Teknologi yang saya gunakan' : 'Technologies I work with'}</h2>
 
     <div class="skills-grid">
       {#each skillGroups as group}
         <div class="skill-group">
-          <h4 class="mono group-label">{group.title}</h4>
+          <h4 class="mono group-label">{group.title[currentLang]}</h4>
           <ul class="skill-list">
             {#each group.skills as skill}
               <li>{skill}</li>

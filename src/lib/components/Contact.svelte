@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { language, type Language } from '$lib/stores/language';
+  import { translations } from '$lib/data/translations';
   import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
   let name = $state('');
@@ -8,6 +10,7 @@
   let message = $state('');
   let status = $state<'idle' | 'sending' | 'sent' | 'error'>('idle');
   let errorMsg = $state('');
+  let currentLang = $state<Language>('en');
 
   async function handleSubmit(e: Event) {
     e.preventDefault();
@@ -30,15 +33,18 @@
         message = '';
       } else {
         status = 'error';
-        errorMsg = data.error || 'Something went wrong.';
+        errorMsg = data.error || (currentLang === 'id' ? 'Terjadi kesalahan.' : 'Something went wrong.');
       }
     } catch {
       status = 'error';
-      errorMsg = 'Network error. Please try again.';
+      errorMsg = currentLang === 'id' ? 'Kesalahan jaringan. Silakan coba lagi.' : 'Network error. Please try again.';
     }
   }
 
   onMount(() => {
+    const unsubscribeLang = language.subscribe(v => {
+      currentLang = v;
+    });
     const triggers: import('gsap/ScrollTrigger').ScrollTrigger[] = [];
 
     (async () => {
@@ -101,51 +107,53 @@
     }));
     })();
 
-    return () => triggers.forEach(st => st.kill());
+    return () => {
+      triggers.forEach(st => st.kill());
+      unsubscribeLang();
+    };
   });
 </script>
 
 <section id="contact" class="section">
   <div class="container">
-    <span class="section-label">04 — Contact</span>
+    <span class="section-label">{translations[currentLang].contactSub}</span>
 
     <div class="contact-layout">
       <div class="contact-left">
-        <h2>Let's work<br /><em>together.</em></h2>
+        <h2>{currentLang === 'id' ? 'Mari bekerja' : "Let's work"}<br /><em>{currentLang === 'id' ? 'sama.' : 'together.'}</em></h2>
         <p class="muted">
-          Open to new opportunities, collaborations, and interesting conversations.
-          Don't hesitate to reach out.
+          {currentLang === 'id' ? 'Terbuka untuk peluang baru, kolaborasi, dan percakapan menarik. Jangan ragu untuk menghubungi saya.' : 'Open to new opportunities, collaborations, and interesting conversations. Don\'t hesitate to reach out.'}
         </p>
 
         <div class="contact-links">
           <a href="mailto:{profile.email}" class="contact-row">
             <span class="mono muted">Email</span>
             <span class="contact-value">{profile.email}</span>
-            <span class="arrow">→</span>
+            <span class="arrow">&rarr;</span>
           </a>
           {#if profile.whatsapp}
             <hr class="rule" />
-            <a href="https://wa.me/{profile.whatsapp}?text={encodeURIComponent(profile.whatsappMessage || '')}" target="_blank" rel="noopener noreferrer" class="contact-row">
+            <a href="https://wa.me/{profile.whatsapp}?text={encodeURIComponent(profile.whatsappMessage ? profile.whatsappMessage[currentLang] : '')}" target="_blank" rel="noopener noreferrer" class="contact-row">
               <span class="mono muted">WhatsApp</span>
               <span class="contact-value">{profile.whatsappDisplay || profile.whatsapp}</span>
-              <span class="arrow">→</span>
+              <span class="arrow">&rarr;</span>
             </a>
           {/if}
           <hr class="rule" />
           <a href="https://{profile.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-row">
             <span class="mono muted">LinkedIn</span>
             <span class="contact-value">ajrilfatah</span>
-            <span class="arrow">→</span>
+            <span class="arrow">&rarr;</span>
           </a>
           <hr class="rule" />
           <a href="https://github.com/kikiexe" target="_blank" rel="noopener noreferrer" class="contact-row">
             <span class="mono muted">GitHub</span>
             <span class="contact-value">kikiexe</span>
-            <span class="arrow">→</span>
+            <span class="arrow">&rarr;</span>
           </a>
           <hr class="rule" />
           <div class="contact-row">
-            <span class="mono muted">Location</span>
+            <span class="mono muted">{currentLang === 'id' ? 'Lokasi' : 'Location'}</span>
             <span class="contact-value">{profile.location}</span>
           </div>
         </div>
@@ -154,19 +162,19 @@
       <div class="contact-right">
         <form class="contact-form" onsubmit={handleSubmit}>
           <div class="form-group">
-            <label for="name" class="mono">Name</label>
+            <label for="name" class="mono">{translations[currentLang].contactName}</label>
             <input
               id="name"
               type="text"
               bind:value={name}
-              placeholder="Your name"
+              placeholder={currentLang === 'id' ? 'Nama Anda' : 'Your name'}
               required
               disabled={status === 'sending'}
             />
           </div>
 
           <div class="form-group">
-            <label for="email" class="mono">Email</label>
+            <label for="email" class="mono">{translations[currentLang].contactEmail}</label>
             <input
               id="email"
               type="email"
@@ -178,11 +186,11 @@
           </div>
 
           <div class="form-group">
-            <label for="message" class="mono">Message</label>
+            <label for="message" class="mono">{translations[currentLang].contactMessage}</label>
             <textarea
               id="message"
               bind:value={message}
-              placeholder="Tell me about your project or idea..."
+              placeholder={currentLang === 'id' ? 'Ceritakan tentang proyek atau ide Anda...' : 'Tell me about your project or idea...'}
               rows="5"
               required
               disabled={status === 'sending'}
@@ -191,14 +199,16 @@
 
           <button type="submit" class="submit-btn mono" disabled={status === 'sending'}>
             {#if status === 'sending'}
-              Sending...
+              {translations[currentLang].contactSending}
             {:else}
-              Send Message →
+              {currentLang === 'id' ? 'Kirim Pesan →' : 'Send Message →'}
             {/if}
           </button>
 
           {#if status === 'sent'}
-            <p class="form-status success">Message sent successfully. I'll get back to you soon.</p>
+            <p class="form-status success">
+              {translations[currentLang].contactSuccess} {currentLang === 'id' ? 'Saya akan segera menghubungi Anda kembali.' : 'I\'ll get back to you soon.'}
+            </p>
           {/if}
 
           {#if status === 'error'}

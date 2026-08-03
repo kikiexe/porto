@@ -1,12 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { language, type Language } from '$lib/stores/language';
   import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
+
+  let currentLang = $state<Language>('en');
 
   onMount(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let tl: any = null;
     let heroST: any = null;
+
+    const unsubscribeLang = language.subscribe(v => {
+      currentLang = v;
+    });
 
     (async () => {
       const { gsap } = await getGsap();
@@ -49,6 +56,7 @@
     return () => {
       tl?.kill();
       heroST?.scrollTrigger?.kill();
+      unsubscribeLang();
     };
   });
 </script>
@@ -64,16 +72,16 @@
     </h1>
 
     <div class="hero-tagline">
-      <p class="serif">{profile.role}</p>
+      <p class="serif">{profile.role[currentLang]}</p>
     </div>
 
     <p class="hero-summary muted">
-      {profile.summary}
+      {profile.summary[currentLang]}
     </p>
 
     <div class="hero-actions">
-      <a href="#projects" class="btn-solid">Selected Work</a>
-      <a href="/cv.pdf" class="btn-ghost" download>Resume ↓</a>
+      <a href="#projects" class="btn-solid">{currentLang === 'id' ? 'Karya Pilihan' : 'Selected Work'}</a>
+      <a href="/cv.pdf" class="btn-ghost" download>{currentLang === 'id' ? 'Unduh CV ↓' : 'Resume ↓'}</a>
     </div>
   </div>
 

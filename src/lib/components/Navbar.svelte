@@ -1,18 +1,21 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { theme } from '$lib/stores/theme';
+  import { language, type Language } from '$lib/stores/language';
+  import { translations } from '$lib/data/translations';
   import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
   let isScrolled = $state(false);
   let isMobileMenuOpen = $state(false);
   let currentTheme = $state<'light' | 'dark'>('light');
+  let currentLang = $state<Language>('en');
 
-  const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Work', href: '#projects' },
-    { name: 'Stack', href: '#skills' },
-    { name: 'Contact', href: '#contact' }
-  ];
+  const navLinks = $derived([
+    { name: translations[currentLang].navAbout, href: '/#about' },
+    { name: translations[currentLang].navWork, href: '/#projects' },
+    { name: translations[currentLang].navStack, href: '/#skills' },
+    { name: translations[currentLang].navContact, href: '/#contact' }
+  ]);
 
   let activeSection = $state('');
 
@@ -37,6 +40,10 @@
 
     const unsubscribe = theme.subscribe(v => {
       currentTheme = v;
+    });
+
+    const unsubscribeLang = language.subscribe(v => {
+      currentLang = v;
     });
 
     const handleScroll = () => {
@@ -70,6 +77,7 @@
       document.removeEventListener('click', handleOutsideClick);
       observer.disconnect();
       unsubscribe();
+      unsubscribeLang();
     };
   });
 
@@ -100,7 +108,7 @@
           <a
             href={link.href}
             class="nav-link"
-            class:active={activeSection === link.href.replace('#', '')}
+            class:active={activeSection === link.href.split('#')[1]}
           >
             {link.name}
           </a>

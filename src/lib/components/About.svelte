@@ -1,9 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { profile } from '$lib/data/profile';
+  import { language, type Language } from '$lib/stores/language';
+  import { translations } from '$lib/data/translations';
   import { getGsap, EASE, DURATION } from '$lib/utils/gsap';
 
+  let currentLang = $state<Language>('en');
+
   onMount(() => {
+    const unsubscribeLang = language.subscribe(v => {
+      currentLang = v;
+    });
     const triggers: import('gsap/ScrollTrigger').ScrollTrigger[] = [];
 
     (async () => {
@@ -62,24 +69,27 @@
       }));
     })();
 
-    return () => triggers.forEach(st => st.kill());
+    return () => {
+      triggers.forEach(st => st.kill());
+      unsubscribeLang();
+    };
   });
 </script>
 
 <section id="about" class="section">
   <div class="container">
-    <span class="section-label">01 — About</span>
+    <span class="section-label">{translations[currentLang].aboutSub}</span>
 
     <div class="about-grid">
       <div class="about-bio-row">
         <div class="about-bio-text">
-          <h2>{@html `A developer building at the intersection of <em>web</em> and <em>blockchain</em>.`}</h2>
-          <p class="muted">{profile.summary}</p>
+          <h2>{@html currentLang === 'id' ? 'Seorang pengembang yang membangun di persimpangan <em>web</em> dan <em>blockchain</em>.' : 'A developer building at the intersection of <em>web</em> and <em>blockchain</em>.'}</h2>
+          <p class="muted">{profile.summary[currentLang]}</p>
 
           <div class="spotify-status">
             <a href="https://spotify-github-profile.kittinanx.com/api/view?uid=pqmdjhoiqiiapqgyiju3ns7x1&redirect=true" target="_blank" rel="noopener noreferrer">
               <img
-                src="https://spotify-github-profile.kittinanx.com/api/view?uid=pqmdjhoiqiiapqgyiju3ns7x1&cover_image=true&theme=novatorem&show_offline=true&background_color=121212&interchange=true&profanity=true&bar_color=53b14f&bar_color_cover=false"
+                src="https://spotify-github-profile.kittinanx.com/api/view?uid=pqmdjhoiqiiapqgyiju3ns7x1&cover_image=true&theme=novatorem&show_offline=true&background_color=121212&interchange=true&profanity=true&hide_remaster=true&bar_color=53b14f&bar_color_cover=true"
                 alt="Spotify Status"
               />
             </a>
@@ -99,9 +109,9 @@
         <div class="history-col education-col">
           <div class="education-block">
             <div class="education-content">
-              <span class="mono muted block-title">Education</span>
+              <span class="mono muted block-title">{currentLang === 'id' ? 'Pendidikan' : 'Education'}</span>
               <p class="school">{profile.education.school}</p>
-              <p class="muted">{profile.education.degree}</p>
+              <p class="muted">{profile.education.degree[currentLang]}</p>
               <p class="mono" style="margin-top: 0.25rem">{profile.education.gpa} · {profile.education.period}</p>
             </div>
             <img src="/images/Amikom.svg" alt="Amikom" class="education-logo" />
@@ -109,13 +119,13 @@
         </div>
 
         <div class="history-col experience-col">
-          <span class="mono muted block-title">Experience</span>
+          <span class="mono muted block-title">{currentLang === 'id' ? 'Pengalaman' : 'Experience'}</span>
           {#each profile.experience as job}
             <div class="exp-item">
-              <p class="exp-company">{job.role} <span class="muted">- {job.company}</span></p>
+              <p class="exp-company">{job.role[currentLang]} <span class="muted">- {job.company}</span></p>
               <p class="mono muted">{job.period}</p>
               <ul class="exp-description">
-                {#each job.description as point}
+                {#each job.description[currentLang] as point}
                   <li>{point}</li>
                 {/each}
               </ul>

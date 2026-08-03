@@ -1,29 +1,51 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { Project } from '$lib/data/projects';
+  import { language, type Language } from '$lib/stores/language';
+  import { translations } from '$lib/data/translations';
 
   let { project, index = 0 }: { project: Project; index?: number } = $props();
+  let currentLang = $state<Language>('en');
 
-  const categoryLabel: Record<string, string> = {
-    web3: 'Web3 / Blockchain',
-    web: 'Web Application',
-    mobile: 'Mobile Application',
-    game: 'Game Dev',
-    tool: 'Developer Tool'
+  onMount(() => {
+    const unsubscribeLang = language.subscribe(v => {
+      currentLang = v;
+    });
+    return unsubscribeLang;
+  });
+
+  const categoryLabel: Record<'en' | 'id', Record<string, string>> = {
+    en: {
+      web3: 'Web3 / Blockchain',
+      web: 'Web Application',
+      mobile: 'Mobile Application',
+      game: 'Game Dev',
+      tool: 'Developer Tool',
+      tools: 'Tools & Automation'
+    },
+    id: {
+      web3: 'Web3 / Blockchain',
+      web: 'Aplikasi Web',
+      mobile: 'Aplikasi Mobile',
+      game: 'Game Dev',
+      tool: 'Alat Developer',
+      tools: 'Peralatan & Otomasi'
+    }
   };
 </script>
 
-<article class="project-row">
+<a href="/projects/{project.slug}" class="project-row">
   <div class="project-meta">
     <span class="mono muted">{String(index + 1).padStart(2, '0')}</span>
-    <span class="mono cat">{categoryLabel[project.category] || project.category}</span>
+    <span class="mono cat">{categoryLabel[currentLang][project.category] || project.category}</span>
     {#if project.status === 'in-progress'}
-      <span class="mono status">In Progress</span>
+      <span class="mono status">{translations[currentLang].inProgress}</span>
     {/if}
   </div>
 
   <div class="project-body">
     <h3>{project.title}</h3>
-    <p class="muted">{project.description}</p>
+    <p class="muted">{project.description[currentLang]}</p>
   </div>
 
   <div class="project-tags">
@@ -31,7 +53,7 @@
       <span class="tag mono">{tag}</span>
     {/each}
   </div>
-</article>
+</a>
 
 <style>
   .project-row {
