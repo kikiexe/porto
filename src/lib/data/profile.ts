@@ -24,9 +24,7 @@ export interface Profile {
   email: string;
   linkedin: string;
   github: string;
-  whatsapp?: string;
-  whatsappMessage?: Record<'en' | 'id', string>;
-  whatsappDisplay?: string;
+  telegram?: string;
   url: string;
   location: string;
   summary: Record<'en' | 'id', string>;
@@ -44,12 +42,7 @@ export const profile: Profile = {
   email: "putraajril2@gmail.com",
   linkedin: "linkedin.com/in/ajrilfatah",
   github: "github.com/kikiexe",
-  whatsapp: "6281215536136",
-  whatsappMessage: {
-    en: "Hello Putra! Pleased to meet you. I'm interested in collaborating or working together with you.",
-    id: "Halo Putra! Salam kenal ya. Aku tertarik buat kolaborasi atau kerjasama bareng kamu nih."
-  },
-  whatsappDisplay: "0812-1553-6136",
+  telegram: "sathafy",
   url: "https://ajrilfatah.vercel.app",
   location: "Sleman, D.I. Yogyakarta",
   summary: {

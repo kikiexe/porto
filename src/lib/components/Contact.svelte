@@ -131,11 +131,11 @@
             <span class="contact-value">{profile.email}</span>
             <span class="arrow">&rarr;</span>
           </a>
-          {#if profile.whatsapp}
+          {#if profile.telegram}
             <hr class="rule" />
-            <a href="https://wa.me/{profile.whatsapp}?text={encodeURIComponent(profile.whatsappMessage ? profile.whatsappMessage[currentLang] : '')}" target="_blank" rel="noopener noreferrer" class="contact-row">
-              <span class="mono muted">WhatsApp</span>
-              <span class="contact-value">{profile.whatsappDisplay || profile.whatsapp}</span>
+            <a href="https://t.me/{profile.telegram}" target="_blank" rel="noopener noreferrer" class="contact-row">
+              <span class="mono muted">Telegram</span>
+              <span class="contact-value">@{profile.telegram}</span>
               <span class="arrow">&rarr;</span>
             </a>
           {/if}
