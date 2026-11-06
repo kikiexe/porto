@@ -8,33 +8,35 @@ Personal website and portfolio of Putra Ajril Fatah, a developer specializing in
 - Email: putraajril2@gmail.com
 - GitHub: https://github.com/kikiexe
 - LinkedIn: https://linkedin.com/in/ajrilfatah
-- Location: Sleman, D.I. Yogyakarta, Indonesia
+- Location: Yogyakarta, Indonesia
 
 ## Summary
 
-Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and contributing to robust, scalable infrastructures.
+Full Stack Developer with 1+ year at a software house, building multi-tenant, offline-first, and financial-transaction systems (POS, payroll, escrow, ledgers) with Laravel, Svelte 5, PostgreSQL, and Redis. Handles the full cycle from client requirements to architecture, sprint planning, and deployment. Secondary experience in Solidity smart contracts and Web3 applications.
 
 ## Education
 
 - University: Universitas Amikom Yogyakarta (2022 - 2026)
 - Degree: Bachelor of Informatics
 - GPA: 3.32 / 4.00
-- Focus: Programming and Data Science
+- Thesis: Implementation of a Blockchain- and IPFS-Based Digital Document Notarization System Using Smart Contracts on Base Layer 2 (Velipe) | Grade: A
 
 ## Technical Stack
 
-- Languages and Frameworks: Solidity, Move, Node.js, Python, Laravel, Foundry, SvelteKit, React, Next.js, Inertia.js, HTML, CSS, JavaScript, Flutter
-- Blockchain and Web3: Smart Contracts, ZK Proofs, IPFS, DeFi, NFT, Wallet Integration
-- Databases: PostgreSQL, MySQL, Supabase, Drift, Isar NoSQL
-- Tools: Git, Postman, Figma, Visual Studio, Docker, Ponder
+- Programming Languages: TypeScript, JavaScript, Python, PHP, Dart, Solidity, Node.js
+- Frontend and Mobile: Svelte 5, React, Next.js, Inertia.js, Flutter, Tailwind CSS, PWA
+- Blockchain and Web3: Smart Contracts, Zero-Knowledge Proofs (ZK), Base L2 & EVM, Wagmi & Ponder, Foundry, IPFS, DeFi & Tokenomics
+- Databases and Storage: PostgreSQL, MySQL, Redis, IndexedDB (Dexie.js), Isar NoSQL & Drift, Supabase
+- Backend and DevOps: Laravel (Octane), FastAPI, FrankenPHP, Docker, Git, Postman
+- Architecture and Leadership: System Architecture, Offline-First Design, Technical Leadership, Agile Sprint Planning, Problem-Solving, Cross-Functional Collaboration
 
 ## Experience
 
-### Full Stack Developer - Munk Studio (August 2025 - Present)
-- Lead client communication and translate business requirements into technical specifications.
-- Architect system design and select appropriate tech stacks for each project.
-- Plan and manage development sprints to ensure timely delivery.
-- Build and maintain full-stack web and Web3 applications across frontend and backend layers.
+### Full Stack Developer - Munk Studio (2022 - 2026)
+- Led communication with clients and translated business requirements into technical specs for projects, some of them live in production.
+- Architected system design and selected tech stacks per project, delivering projects on schedule.
+- Planned and ran sprints for a team, covering frontend, backend, and deployment.
+- Built and maintained full-stack web and Web3 applications.
 
 ## Selected Projects
 
@@ -55,13 +57,17 @@ AI-driven fraud prevention platform for community savings (arisan). Mitigates de
 - Technologies: Python, FastAPI, Escrow
 
 ### June Label (Completed)
-Modern e-commerce website with premium product gallery managed via Filament Admin Panel. Integrated cart and checkout system for seamless end-to-end shopping experience.
+Modern e-commerce website with premium product gallery managed via Filament Admin Panel. Integrated cart and checkout system for seamless end-to-end shopping experience. Live at https://junelabel.id.
 - Technologies: Laravel, Inertia.js, React, Filament
 
-### SiPandu-DM (In Progress)
+### SiPandu-DM (Completed)
 Engineered an offline-first mobile application with a strict 3-tier architecture to monitor Type 2 Diabetes risk at the community level. Implemented robust local data synchronization using the Outbox Pattern and Isar NoSQL for reliable operation in low-connectivity environments. Designed a secure backend API with Python, integrating AES-256-GCM encryption and Role-Based Access Control to ensure medical data confidentiality and regulatory compliance.
 - Technologies: Flutter, FastAPI, PostgreSQL, Drift, Docker
 
 ### Billet (Completed)
 Built an on-chain smart ticketing protocol on Base Layer 2 utilizing ERC-1155 to mitigate scalping through trustless escrow and strict secondary market restrictions. Architected on-chain price ceiling enforcement and conditional royalty routing (ERC-2981) to automatically restrict peer-to-peer transfers and manage event organizer revenues. Designed a decoupled Web3 architecture integrating smart contracts, a Ponder-based indexer for efficient GraphQL event querying, and a Next.js/Wagmi frontend.
 - Technologies: Solidity, Next.js, Foundry, Base L2, Ponder
+
+### Solvio (Completed)
+Enterprise multi-tenant SaaS operational platform unifying GPS selfie attendance with anti-spoofing watermark, offline-first POS cash register, and automated payroll calculation across multi-branch retail outlets. Powered by Laravel Octane on FrankenPHP for sub-millisecond API responses and Svelte 5 frontend SPAs.
+- Technologies: Svelte 5, Laravel 11, Octane / FrankenPHP, PostgreSQL

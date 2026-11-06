@@ -118,6 +118,12 @@
       </div>
     </header>
 
+    {#if project.image}
+      <div class="banner-wrap content-section" class:mobile-frame={project.category === 'mobile'}>
+        <img src={project.image} alt={project.title} class="project-banner" />
+      </div>
+    {/if}
+
     <hr class="divider" style="border-top-color: {colorRuleLight}" />
 
     <div class="detail-grid">
@@ -263,6 +269,37 @@
 
   .text-notice {
     font-size: 0.75rem;
+  }
+
+  .banner-wrap {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-rule-light);
+  }
+
+  .banner-wrap.mobile-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .banner-wrap.mobile-frame .project-banner {
+    width: auto;
+    max-width: 360px;
+    max-height: 640px;
+    border-radius: 16px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--color-rule-light);
+  }
+
+  .project-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
   }
 
   .divider {

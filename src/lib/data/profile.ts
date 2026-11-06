@@ -9,6 +9,7 @@ export interface Education {
   gpa: string;
   period: string;
   focus: string;
+  thesis?: Record<'en' | 'id', string>;
 }
 
 export interface Experience {
@@ -44,10 +45,10 @@ export const profile: Profile = {
   github: "github.com/kikiexe",
   telegram: "sathafy",
   url: "https://ajrilfatah.vercel.app",
-  location: "Sleman, D.I. Yogyakarta",
+  location: "Yogyakarta, Indonesia",
   summary: {
-    en: "Full Stack & Web3 Developer focused on decentralized architecture and secure systems. Proven experience building smart contracts, ZK-proof integrations, and automated escrow systems. Passionate about solving complex data integrity challenges and contributing to robust, scalable infrastructures.",
-    id: "Pengembang Full Stack & Web3 yang berfokus pada arsitektur terdesentralisasi dan sistem yang aman. Memiliki pengalaman terbukti dalam membangun smart contract, integrasi ZK-proof, dan sistem escrow otomatis. Sangat bersemangat dalam memecahkan tantangan integritas data yang kompleks dan berkontribusi pada infrastruktur yang kuat dan terukur."
+    en: "Full Stack Developer with 1+ year at a software house, building multi-tenant, offline-first, and financial-transaction systems (POS, payroll, escrow, ledgers) with Laravel, Svelte 5, PostgreSQL, and Redis. Handles the full cycle from client requirements to architecture, sprint planning, and deployment. Secondary experience in Solidity smart contracts and Web3 applications.",
+    id: "Full Stack Developer dengan pengalaman 1+ tahun di software house, membangun sistem multi-tenant, offline-first, dan transaksi finansial (POS, payroll, escrow, ledger) dengan Laravel, Svelte 5, PostgreSQL, dan Redis. Menangani siklus penuh mulai dari kebutuhan klien hingga arsitektur, perencanaan sprint, dan deployment. Berpengalaman sekunder dalam smart contract Solidity dan aplikasi Web3."
   },
   education: {
     school: "Universitas Amikom Yogyakarta",
@@ -56,8 +57,12 @@ export const profile: Profile = {
       id: "Sarjana Informatika"
     },
     gpa: "3.32/4.00",
-    period: "2022-2026",
-    focus: "Programming/Data Science"
+    period: "2022 – 2026",
+    focus: "Programming & Data Science",
+    thesis: {
+      en: "Thesis: Implementation of a Blockchain- and IPFS-Based Digital Document Notarization System Using Smart Contracts on Base Layer 2 (Velipe) · Grade: A",
+      id: "Skripsi: Implementasi Sistem Notarisasi Dokumen Digital Berbasis Blockchain dan IPFS Menggunakan Smart Contract pada Base Layer 2 (Velipe) · Nilai: A"
+    }
   },
   experience: [
     {
@@ -66,19 +71,19 @@ export const profile: Profile = {
         en: "Full Stack Developer",
         id: "Pengembang Full Stack"
       },
-      period: "August 2025 - Present",
+      period: "2022 – 2026",
       description: {
         en: [
-          "Lead client communication and translate business requirements into technical specifications.",
-          "Architect system design and select appropriate tech stacks for each project.",
-          "Plan and manage development sprints to ensure timely delivery.",
-          "Build and maintain full-stack web and Web3 applications across frontend and backend layers."
+          "Led communication with clients and translated business requirements into technical specs for projects, some of them live in production.",
+          "Architected system design and selected tech stacks per project, delivering projects on schedule.",
+          "Planned and ran sprints for a team, covering frontend, backend, and deployment.",
+          "Built and maintained full-stack web and Web3 applications."
         ],
         id: [
-          "Memimpin komunikasi dengan klien dan menerjemahkan kebutuhan bisnis menjadi spesifikasi teknis.",
-          "Merancang arsitektur sistem dan memilih teknologi yang tepat untuk setiap proyek.",
-          "Merencanakan dan mengelola sprint pengembangan untuk memastikan pengiriman tepat waktu.",
-          "Membangun dan memelihara aplikasi web full-stack dan Web3 di seluruh lapisan frontend dan backend."
+          "Memimpin komunikasi dengan klien dan menerjemahkan kebutuhan bisnis menjadi spesifikasi teknis untuk proyek, beberapa di antaranya aktif di produksi.",
+          "Merancang arsitektur sistem dan memilih teknologi per proyek, menyelesaikan proyek tepat waktu.",
+          "Merencanakan dan menjalankan sprint pengembangan tim, mencakup frontend, backend, dan deployment.",
+          "Membangun dan memelihara aplikasi web full-stack dan aplikasi Web3."
         ]
       }
     }
@@ -86,45 +91,45 @@ export const profile: Profile = {
   skills: [
     {
       title: {
-        en: "Languages & Frameworks",
-        id: "Bahasa Pemrograman & Framework"
+        en: "Programming Languages",
+        id: "Bahasa Pemrograman"
       },
-      skills: ["Solidity", "Move", "Node.js", "Python", "Laravel", "Foundry"]
+      skills: ["TypeScript", "JavaScript", "Python", "PHP", "Dart", "Solidity", "Node.js"]
     },
     {
       title: {
-        en: "Frontend",
-        id: "Frontend"
+        en: "Frontend & Mobile",
+        id: "Frontend & Mobile"
       },
-      skills: ["React", "Inertia.js", "Next.js", "HTML", "CSS", "JavaScript"]
+      skills: ["Svelte 5", "React", "Next.js", "Inertia.js", "Flutter", "Tailwind CSS", "PWA"]
     },
     {
       title: {
         en: "Blockchain & Web3",
         id: "Blockchain & Web3"
       },
-      skills: ["Smart Contracts", "ZK Proofs", "IPFS", "DeFi", "NFT", "Wallet Integration"]
+      skills: ["Smart Contracts", "Zero-Knowledge Proofs (ZK)", "Base L2 & EVM", "Wagmi & Ponder", "Foundry", "IPFS", "DeFi & Tokenomics"]
     },
     {
       title: {
-        en: "Database",
-        id: "Basis Data"
+        en: "Database & Storage",
+        id: "Basis Data & Penyimpanan"
       },
-      skills: ["PostgreSQL", "MySQL", "Supabase"]
+      skills: ["PostgreSQL", "MySQL", "Redis", "IndexedDB (Dexie.js)", "Isar NoSQL & Drift", "Supabase"]
     },
     {
       title: {
-        en: "Tools",
-        id: "Peralatan"
+        en: "Backend & DevOps",
+        id: "Backend & DevOps"
       },
-      skills: ["Git", "Postman", "Figma", "Visual Studio", "Docker"]
+      skills: ["Laravel (Octane)", "FastAPI", "FrankenPHP", "Docker", "Git", "Postman"]
     },
     {
       title: {
-        en: "Soft Skills",
-        id: "Keahlian Interpersonal"
+        en: "Architecture & Soft Skills",
+        id: "Arsitektur & Manajemen"
       },
-      skills: ["Adaptability", "Teamwork", "Problem-Solving", "Communication", "Crypto Market Analysis"]
+      skills: ["System Architecture", "Offline-First Design", "Technical Leadership", "Agile Sprint Planning", "Problem-Solving", "Cross-Functional Collaboration"]
     }
   ]
 };

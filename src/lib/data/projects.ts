@@ -13,6 +13,7 @@ export interface Project {
   category: 'web3' | 'web' | 'mobile' | 'tools';
   status: 'completed' | 'in-progress';
   links?: { github?: string; live?: string; };
+  image?: string;
   details?: ProjectDetails;
 }
 
@@ -77,6 +78,7 @@ export const projects: Project[] = [
     links: {
       live: "https://velipe-alpha.vercel.app/"
     },
+    image: "/images/velipe.jpg",
     details: {
       problem: {
         en: "Traditional credential and document verification systems are slow, costly, and heavily dependent on centralized verification authorities, creating single points of failure and risks of document forgery.",
@@ -177,6 +179,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/kikiexe/Gasan"
     },
+    image: "/images/gasan.png",
     details: {
       problem: {
         en: "Traditional peer-to-peer community savings groups (arisan) face default risks and lack transparent escrow mechanisms, leading to trust issues and administrative overhead.",
@@ -224,6 +227,10 @@ export const projects: Project[] = [
     tags: ["Laravel", "Inertia.js", "React", "Filament"],
     category: "web",
     status: "completed",
+    links: {
+      live: "https://junelabel.id"
+    },
+    image: "/images/june-label.jpg",
     details: {
       problem: {
         en: "Small to medium boutique brands struggle to manage product catalogues and track orders through fragmented, non-developer-friendly admin interfaces, hurting conversion rates.",
@@ -274,6 +281,7 @@ export const projects: Project[] = [
     links: {
       live: "/app-release.apk"
     },
+    image: "/images/sipandu-dm.png",
     details: {
       problem: {
         en: "Community health workers in remote areas struggle to assess Type 2 Diabetes risk due to unstable internet connectivity, causing critical patient screening data to be lost.",
@@ -323,6 +331,7 @@ export const projects: Project[] = [
     tags: ["Solidity", "Next.js", "Foundry", "Base L2", "Ponder"],
     category: "web3",
     status: "completed",
+    image: "/images/billet.jpg",
     details: {
       problem: {
         en: "Ticket scalping and secondary market manipulation inflate prices and divert revenue away from event organizers, while users suffer from fake tickets.",
@@ -511,6 +520,63 @@ export const projects: Project[] = [
           "API Google Gemini untuk ekstraksi teks terstruktur JSON dan analisis gambar",
           "Pustaka go-telegram-bot-api untuk antarmuka bot obrolan yang kaya",
           "Konfigurasi pengiriman SMTP menggunakan pustaka bawaan net/smtp"
+        ]
+      }
+    }
+  },
+  {
+    slug: "solvio",
+    title: "Solvio",
+    description: {
+      en: "Multi-tenant SaaS operational platform unifying GPS selfie attendance with anti-spoofing watermark, offline-first POS cash register (Dexie / IndexedDB), and automated multi-branch payroll calculation.",
+      id: "Platform SaaS operasional bisnis multi-tenant yang menyatukan presensi selfie ber-watermark GPS anti-titip absen, kasir POS offline-first (Dexie / IndexedDB), dan kalkulasi payroll otomatis multi-cabang."
+    },
+    tags: ["Svelte 5", "Laravel 11", "Octane", "FrankenPHP", "PostgreSQL"],
+    category: "web",
+    status: "completed",
+    links: {
+      live: "https://solvio.id"
+    },
+    image: "/images/solvio.jpg",
+    details: {
+      problem: {
+        en: "Multi-outlet retail and F&B businesses struggle with fragmented operational systems: rampant ghost attendance via fake GPS or proxy clock-ins, cash register paralysis during internet outages, and error-prone manual payroll reconciliation across branches.",
+        id: "Bisnis ritel dan kuliner multi-cabang menghadapi masalah operasional yang terfragmentasi: maraknya titip absen dan GPS palsu, kasir macet total saat koneksi internet mati, serta rekapitulasi gaji manual yang memakan waktu dan rentan kesalahan antar-cabang."
+      },
+      solution: {
+        en: "Architected an enterprise multi-tenant SaaS platform integrating attendance, offline POS, and payroll into a unified system. Deployed using Laravel Octane on FrankenPHP for sub-millisecond API response times, paired with reactive Svelte 5 frontend applications and Dexie-driven IndexedDB client storage.",
+        id: "Merancang platform SaaS multi-tenant yang mengintegrasikan presensi, kasir POS offline, dan payroll ke dalam satu ekosistem terpadu. Dijalankan dengan Laravel Octane di atas FrankenPHP untuk latensi API sub-milidetik, dipadukan dengan frontend Svelte 5 reaktif serta penyimpanan lokal Dexie IndexedDB."
+      },
+      features: {
+        en: [
+          "Watermarked GPS selfie attendance with client-side canvas rendering to eliminate proxy clock-ins",
+          "Resilient 60 FPS offline-first POS cash register powered by Dexie.js (IndexedDB) and auto-sync queue",
+          "Automated payroll calculation engine accounting for shift rates, tardiness fines, overtime, and loan deductions",
+          "Quota-based multi-tenant workspace isolation with role-based access control (Owner, Manager, Cashier, Staff)",
+          "High-concurrency backend powered by Laravel Octane on FrankenPHP worker threads and Redis caching"
+        ],
+        id: [
+          "Presensi selfie ber-watermark koordinat GPS dan timestamp aktual via HTML5 Canvas untuk mencegah titip absen",
+          "Aplikasi kasir POS 60 FPS yang tetap berjalan lancar tanpa internet menggunakan Dexie.js (IndexedDB) dan sinkronisasi antrean otomatis",
+          "Mesin kalkulasi payroll otomatis dengan perhitungan upah shift, denda keterlambatan per menit, lembur, dan potongan kasbon",
+          "Isolasi tenant multi-cabang berbasis kuota workspace dengan kontrol akses berjenjang (Owner, Manager, Kasir, Karyawan)",
+          "Backend konkurensi tinggi dengan Laravel Octane bertenaga FrankenPHP worker threads dan Redis cache"
+        ]
+      },
+      architecture: {
+        en: [
+          "Laravel 11 backend running on Laravel Octane with FrankenPHP application server",
+          "Svelte 5 client applications (Landing, App, POS, Superadmin) styled with Tailwind CSS",
+          "PostgreSQL database with multi-tenant workspace partitioning and Redis queues",
+          "Dexie.js and IndexedDB client-side database for robust offline-first PWA operation",
+          "Cloudflare R2 integration for scalable visual archive storage"
+        ],
+        id: [
+          "Backend Laravel 11 berjalan di atas runtime Laravel Octane dan FrankenPHP",
+          "Frontend Svelte 5 SPA (Landing, App, POS, Superadmin) dengan Tailwind CSS",
+          "Database PostgreSQL dengan partisi multi-tenant dan Redis worker queues",
+          "Penyimpanan lokal Dexie.js (IndexedDB) untuk operasional offline-first PWA tanpa jeda",
+          "Integrasi Cloudflare R2 untuk penyimpanan arsip foto presensi yang skalabel"
         ]
       }
     }

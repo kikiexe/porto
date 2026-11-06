@@ -22,7 +22,7 @@
     "image": `${profile.url}/images/profile.png`,
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Sleman",
+      "addressLocality": "Yogyakarta",
       "addressRegion": "D.I. Yogyakarta",
       "addressCountry": "ID"
     },

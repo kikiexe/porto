@@ -113,6 +113,9 @@
               <p class="school">{profile.education.school}</p>
               <p class="muted">{profile.education.degree[currentLang]}</p>
               <p class="mono" style="margin-top: 0.25rem">{profile.education.gpa} · {profile.education.period}</p>
+              {#if profile.education.thesis}
+                <p class="mono muted thesis-text">{profile.education.thesis[currentLang]}</p>
+              {/if}
             </div>
             <img src="/images/Amikom.svg" alt="Amikom" class="education-logo" />
           </div>
@@ -276,6 +279,14 @@
     font-family: 'Instrument Serif', Georgia, serif;
     font-size: 1.15rem;
     margin-bottom: 0.25rem;
+  }
+
+  .thesis-text {
+    font-size: 0.72rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+    max-width: 420px;
+    opacity: 0.8;
   }
 
   .education-logo {
