@@ -32,7 +32,7 @@ Full Stack Developer with 1+ year at a software house, building multi-tenant, of
 
 ## Experience
 
-### Full Stack Developer - Munk Studio (2022 - 2026)
+### Full Stack Developer - Munk Studio (2025 - 2026)
 - Led communication with clients and translated business requirements into technical specs for projects, some of them live in production.
 - Architected system design and selected tech stacks per project, delivering projects on schedule.
 - Planned and ran sprints for a team, covering frontend, backend, and deployment.

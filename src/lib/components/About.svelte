@@ -126,7 +126,7 @@
           {#each profile.experience as job}
             <div class="exp-item">
               <p class="exp-company">{job.role[currentLang]} <span class="muted">- {job.company}</span></p>
-              <p class="mono muted">{job.period}</p>
+              <p class="mono muted">{typeof job.period === 'object' ? job.period[currentLang] : job.period}</p>
               <ul class="exp-description">
                 {#each job.description[currentLang] as point}
                   <li>{point}</li>

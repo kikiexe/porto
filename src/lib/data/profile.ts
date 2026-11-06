@@ -15,7 +15,7 @@ export interface Education {
 export interface Experience {
   company: string;
   role: Record<'en' | 'id', string>;
-  period: string;
+  period: string | Record<'en' | 'id', string>;
   description: Record<'en' | 'id', string[]>;
 }
 
@@ -71,7 +71,7 @@ export const profile: Profile = {
         en: "Full Stack Developer",
         id: "Pengembang Full Stack"
       },
-      period: "2022 – 2026",
+      period: "2025 – 2026",
       description: {
         en: [
           "Led communication with clients and translated business requirements into technical specs for projects, some of them live in production.",
